@@ -1,6 +1,9 @@
 -# add navigation links to this file
 - if signed_in?
-  %li= link_to current_user.email, ''
+  %li
+    = link_to '' do
+      = current_user.email
+      %span.label.label-info= current_user.role
   %li= link_to t('.sign_out'), sign_out_path, method: :delete
 - else
   %li= link_to t('.sign_in'), sign_in_path
