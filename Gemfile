@@ -14,6 +14,8 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'quiet_assets'
+  gem 'rails-footnotes'
 end
 gem 'bootstrap-sass'
 gem 'haml-rails'
