@@ -43,3 +43,15 @@ section {
   @extend .row;
   margin-top: 20px;
   }
+
+.label-created {
+ @extend .label-info
+ }
+
+.label-started {
+ @extend .label-primary
+ }
+
+.label-finished {
+ @extend .label-success
+ }

@@ -1,0 +1,23 @@
+.task.row
+  .col-md-12
+    %h2= @task.name
+    .row
+      .col-md-8.col-sm-12
+        %p= @task.description
+      .meta-info.col-md-4.col-sm-12
+        %ul
+          %li
+            %b Task#
+            = @task.id
+          %li
+            %b Created at:
+            = @task.created_at.to_s(:short)
+          - if current_user.admin?
+            %li
+              %b Assigned to:
+              = @task.user
+              %span.label.label-info= @task.user.role
+          %li
+            %b State:
+            %span.label{class: "label-#{@task.state}"}= @task.state
+      
