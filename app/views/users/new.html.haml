@@ -1,0 +1,11 @@
+.container
+  .row
+    .sign-in
+      .col-md-offset-2.col-md-8
+        %h2= t(".title")
+        = simple_form_for @user do |f|
+          = render '/users/form', f: f
+          .submit-field
+            = f.submit class: 'btn btn-primary'
+          .other-links
+            = link_to t(".sign_in"), sign_in_path
