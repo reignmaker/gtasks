@@ -1,4 +1,4 @@
 class User < ActiveRecord::Base
   include Clearance::User
-  enum roles: [:user, :admin]
+  enum role: [:user, :admin]
 end
