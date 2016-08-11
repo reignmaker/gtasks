@@ -35,7 +35,9 @@ module Web
     end
 
     def task_params
-      params.fetch(:task).permit([:name, :description, :user_id, :state])
+      tsk_params = [:name, :description, :state]
+      tsk_params << :user_id if current_user.admin?
+      params.fetch(:task).permit(tsk_params)
     end
 
   end
