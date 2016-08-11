@@ -7,4 +7,9 @@ class User < ActiveRecord::Base
     try(:email)
   end
 
+  def tasks
+    return Task.includes(:user) if admin?
+    super
+  end
+
 end

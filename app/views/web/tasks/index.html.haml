@@ -1,0 +1,16 @@
+%h1 Tasks
+%table.table.table-striped
+  %thead
+    %tr
+      %th #
+      %th Created at
+      %th Name
+      %th User
+  %tbody
+    - @tasks.each do |task|
+      %tr
+        %th{scope: "row"}= link_to task.id, task
+        %td= task.created_at.to_s(:short)
+        %td= link_to task.name, task
+        %td= task.user
+

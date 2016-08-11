@@ -1,0 +1,24 @@
+%h1 Tasks
+%table.table.table-striped
+  %thead
+    %tr
+      %th #
+      %th Created at
+      %th Name
+      %th Description
+      - if current_user.admin?
+        %th User
+      %th Actions
+  %tbody
+    - @tasks.each do |task|
+      %tr
+        %th{scope: "row"}= link_to task.id, task
+        %td= task.created_at.to_s(:short)
+        %td= link_to task.name, task
+        %td= task.description
+        - if current_user.admin?
+          %td= task.user
+        %td
+          = link_to 'Edit', edit_task_path(task), class: 'text-primary'
+          = link_to 'Delete', task_path(task), class: 'text-danger',
+                    method: :delete, data: { confirm: 'Are you shure?' }
