@@ -9,7 +9,8 @@
         %li
           = f.association :user, label: 'Assign to', collection: User.all
       %li
-        = f.input :state, collection: Task.states.keys.map { |s| [t(s), s] }
+        = f.input :state, collection: Task.states.keys.map { |s| [t(s), s] },
+                  include_blank: false
   .col-md-12
     .form-group
       = f.submit class: 'btn btn-primary'
