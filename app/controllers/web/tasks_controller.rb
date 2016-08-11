@@ -17,7 +17,7 @@ module Web
         flash[:notice] = "Successfuly created Task with ID# #{@task.id}"
         redirect_to user_tasks_path
       else
-        flash[:danger] = @task.errors.full_messages.join(' ')
+        flash[:danger] = @task.errors.full_messages.join(', ')
         render :new
       end
     end
@@ -27,7 +27,7 @@ module Web
         flash[:notice] = "Successfuly updated Task ##{@task.id}"
         redirect_to @task
       else
-        flash[:danger] = @task.errors.full_messages.join(' ')
+        flash[:danger] = @task.errors.full_messages.join(', ')
         render :edit
       end
     end
