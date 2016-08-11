@@ -3,13 +3,15 @@ class User < ActiveRecord::Base
   enum role: [:user, :admin]
   has_many :tasks, dependent: :destroy
 
+  alias_method :original_tasks, :tasks
+
   def to_s
     try(:email)
   end
 
   def tasks
-    return Task.includes(:user) if admin?
-    super
+    return @tasks ||= Task.includes(:user) if admin?
+    original_tasks
   end
 
 end
