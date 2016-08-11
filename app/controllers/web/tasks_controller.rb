@@ -1,6 +1,6 @@
 module Web
   class TasksController < ApplicationController
-    before_action :require_login, except: [:index]
+    before_action :require_login
     before_action :load_task, only: [:show, :edit, :update, :destroy]
 
     def index
