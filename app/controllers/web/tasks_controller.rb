@@ -7,6 +7,10 @@ module Web
       @tasks = Task.includes(:user)
     end
 
+    def new
+      @task = current_user.tasks.build
+    end
+
     def update
       if @task.update(task_params)
         flash[:notice] = "Successfuly updated Task ##{@task.id}"
