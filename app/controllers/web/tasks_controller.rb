@@ -19,7 +19,11 @@ module Web
     protected
 
     def load_task
-      @task = Task.includes(:user).find(params[:id])
+      @task = current_user.tasks.find(params[:id])
+    end
+
+    def task_params
+      params.fetch(:task).permit([:name, :description, :user_id, :state])
     end
 
   end
