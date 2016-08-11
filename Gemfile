@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'clearance'
+gem 'aasm'
 group :development, :test do
   gem 'byebug'
 end
