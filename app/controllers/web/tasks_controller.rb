@@ -8,7 +8,7 @@ module Web
     end
 
     def new
-      @task = current_user.tasks.build
+      @task = current_user.original_tasks.build
     end
 
     def update
