@@ -1,0 +1,16 @@
+= simple_form_for @task do |f|
+  .col-md-8.col-sm-12
+    = f.input :name
+    = f.input :description
+  .meta-info.col-md-4.col-sm-12
+    %ul
+      %li
+      - if current_user.admin?
+        %li
+          = f.association :user, label: 'Assign to', collection: User.all
+      %li
+        = f.input :state, collection: Task.states.keys.map { |s| [t(s), s] }
+  .col-md-12
+    .form-group
+      = f.submit class: 'btn btn-primary'
+      = link_to 'Back', @task.persisted? ? task_path(@task) : user_tasks_path(current_user)

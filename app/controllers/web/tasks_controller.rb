@@ -1,13 +1,21 @@
 module Web
   class TasksController < ApplicationController
-    before_action :require_login, only: [:new, :edit, :update, :destroy]
+    before_action :require_login, except: [:index]
     before_action :load_task, only: [:show, :edit, :update, :destroy]
 
     def index
       @tasks = Task.includes(:user)
     end
 
-    def show; end
+    def update
+      if @task.update(task_params)
+        flash[:notice] = "Successfuly updated Task ##{@task.id}"
+        redirect_to @task
+      else
+        flash[:danger] = @task.errors.full_messages.join(' ')
+        render :edit
+      end
+    end
 
     def destroy
       if @task.destroy
