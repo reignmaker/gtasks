@@ -11,6 +11,17 @@ module Web
       @task = current_user.original_tasks.build
     end
 
+    def create
+      @task = current_user.tasks.build(task_params)
+      if @task.save
+        flash[:notice] = "Successfuly created Task with ID# #{@task.id}"
+        redirect_to user_tasks_path
+      else
+        flash[:danger] = @task.errors.full_messages.join(' ')
+        render :new
+      end
+    end
+
     def update
       if @task.update(task_params)
         flash[:notice] = "Successfuly updated Task ##{@task.id}"
