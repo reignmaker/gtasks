@@ -1,7 +1,7 @@
 module Web
   module Users
     class TasksController < ApplicationController
-      before_action :require_login, only: [:new, :edit, :update, :destroy]
+      before_action :require_login
       def index
         @tasks = current_user.tasks
       end
