@@ -9,6 +9,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'clearance'
 gem 'aasm'
+gem 'responders'
 group :development, :test do
   gem 'byebug'
 end
