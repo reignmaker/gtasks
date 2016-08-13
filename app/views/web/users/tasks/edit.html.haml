@@ -2,7 +2,9 @@
   .col-md-12
     %h2
       Edit
-      %span.text-muted= @task.name
+      %span.text-muted
+        = @task.name
+        task
     .row
       = simple_form_for @task, url: users_task_path(@task) do |f|
         = render 'form_fields', f: f
