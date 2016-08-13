@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   belongs_to :user
+  has_one :attachment, as: :attachable, depended: :destroy
   validates :name, presence: true
 
   state_machine :state, initial: :new do
