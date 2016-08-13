@@ -1,10 +1,58 @@
 module Web
   module Users
     class TasksController < ApplicationController
+      respond_to :html, :js
       before_action :require_login
-      def index
-        @tasks = current_user.tasks
+      before_action :load_task, only: [:show, :edit, :update, :change_state, :destroy]
+
+      def new
+        @task = current_user.original_tasks.build
       end
+
+      def create
+        @task = current_user.tasks.build(task_params)
+        if @task.save
+          flash[:notice] = "Successfuly created Task with ID# #{@task.id}"
+          redirect_to user_tasks_path
+        else
+          flash[:danger] = @task.errors.full_messages.join(', ')
+          render :new
+        end
+      end
+
+      def update
+        if @task.update(task_params)
+          flash[:notice] = "Successfuly updated Task ##{@task.id}"
+        else
+          flash[:danger] = @task.errors.full_messages.join(', ')
+        end
+        respond_with @task
+      end
+
+      def change_state
+        @task.fire_state_event(params[:state])
+        respond_with @task
+      end
+
+      def destroy
+        if @task.destroy
+          flash[:notice] = "Successfuly deleted Task ##{@task.id}"
+        end
+        redirect_to user_tasks_path
+      end
+
+      protected
+
+      def load_task
+        @task = current_user.tasks.find(params[:id])
+      end
+
+      def task_params
+        tsk_params = [:name, :description, :state]
+        tsk_params << :user_id if current_user.admin?
+        params.fetch(:task).permit(tsk_params)
+      end
+
     end
   end
 end

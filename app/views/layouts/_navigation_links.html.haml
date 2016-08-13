@@ -1,7 +1,7 @@
 -# add navigation links to this file
 - if signed_in?
   %li
-    = link_to user_tasks_path do
+    = link_to users_root_path do
       = current_user.email
       %span.label.label-info= current_user.role
   %li= link_to t('.sign_out'), sign_out_path, method: :delete

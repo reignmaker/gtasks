@@ -1,0 +1,16 @@
+.col-md-8.col-sm-12
+  = f.input :name
+  = f.input :description
+.meta-info.col-md-4.col-sm-12
+  %ul
+    %li
+    - if current_user.admin?
+      %li
+        = f.association :user, label: 'Assign to', collection: User.all
+    %li
+      = f.input :state, collection: Task.states.map { |s| [t(s), task_state_value(s)] },
+                include_blank: false
+.col-md-12
+  .form-group
+    = f.submit class: 'btn btn-primary'
+    = link_to 'Back', @task.persisted? ? users_task_path(@task) : users_root_path

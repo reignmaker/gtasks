@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
 
   scope module: :web do
-    root 'welcome#index'
-    resources :tasks
-    resources :users, only: [] do
-      collection do
-        scope module: :users do
-          resources :tasks, only: [:index], as: :user_tasks
-        end
+
+    root to: 'welcome#index'
+
+    namespace :users, path: :user do
+
+      root to: 'welcome#index'
+
+      resources :tasks, except: [:index] do
+        patch ':state' => 'tasks#change_state', on: :member, as: :change_state
       end
+
     end
+
   end
 
 end

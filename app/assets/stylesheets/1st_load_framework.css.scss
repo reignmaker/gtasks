@@ -44,7 +44,7 @@ section {
   margin-top: 20px;
   }
 
-.label-created {
+.label-new {
  @extend .label-info
  }
 
@@ -54,4 +54,13 @@ section {
 
 .label-finished {
  @extend .label-success
+ }
+.btn-new, .btn-reopen {
+   @extend .btn-info
+ }
+.btn-started, .btn-start {
+   @extend .btn-primary
+ }
+.btn-finished, .btn-finish {
+   @extend .btn-success
  }

@@ -1,0 +1,18 @@
+%tr{id: "task-#{task.id}"}
+  %th{scope: "row"}= link_to task.id, users_task_path(task)
+  %td= task.created_at.to_s(:short)
+  %td= link_to task.name, users_task_path(task)
+  %td= task.description
+  - if current_user.admin?
+    %td= task.user
+  %td.states{ width: '30%' }
+    %span.label{class: "label-#{task.state_name}"}= task.state_name
+    .buttons
+      .btn-group
+        - task.state_paths.events.select { |ev| task.send("can_#{ev}?") }.each do |event|
+          = link_to t(event), change_state_users_task_path(task, event), method: :patch, remote: true,
+                    class: "btn btn-#{event}"
+  %td
+    = link_to 'Edit', edit_users_task_path(task), class: 'text-primary'
+    = link_to 'Delete', users_task_path(task), class: 'text-danger',
+              method: :delete, data: { confirm: 'Are you shure?' }
