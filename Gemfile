@@ -8,8 +8,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'clearance'
-gem 'aasm'
 gem 'responders'
+gem 'state_machines-activerecord'
 group :development, :test do
   gem 'byebug'
 end

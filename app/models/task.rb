@@ -1,18 +1,33 @@
 class Task < ActiveRecord::Base
-  include AASM
-  enum state: [:created, :started, :finished]
   belongs_to :user
   validates :name, presence: true
 
-  aasm column: :state do
+  state_machine :state, initial: :new do
+
+    state :new, value: 0
+    state :started, value: 1
+    state :finished, value: 2
+
     event :start do
-      transitions from: :created, to: :started
+      transition new: :started
     end
 
     event :finish do
-      transitions from: :started, to: :finished
+      transition [:new, :started] => :finished
     end
+
+    event :reopen do
+      transition [:started, :finished] => :new
+    end
+
   end
 
+  def self.events
+    state_machines[:state].events.map(&:name)
+  end
+
+  def self.states
+    [:new, :started, :finished]
+  end
 
 end

@@ -1,7 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    aasm (4.11.0)
     actionmailer (4.2.7)
       actionpack (= 4.2.7)
       actionview (= 4.2.7)
@@ -244,6 +243,13 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    state_machines (0.4.0)
+    state_machines-activemodel (0.4.0)
+      activemodel (>= 4.1, < 5.1)
+      state_machines (>= 0.4.0)
+    state_machines-activerecord (0.4.0)
+      activerecord (>= 4.1, < 5.1)
+      state_machines-activemodel (>= 0.3.0)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -275,7 +281,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aasm
   better_errors
   bootstrap-sass
   byebug
@@ -306,6 +311,7 @@ DEPENDENCIES
   simple_form
   spring
   spring-commands-rspec
+  state_machines-activerecord
   therubyracer
   thin
   turbolinks
