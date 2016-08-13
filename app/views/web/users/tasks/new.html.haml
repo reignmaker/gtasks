@@ -3,5 +3,5 @@
     %h2
       New task
     .row
-      = simple_form_for @task, url: new_users_task_path do |f|
+      = simple_form_for @task, url: users_tasks_path do |f|
         = render 'form_fields', f: f
