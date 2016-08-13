@@ -4,6 +4,8 @@
     .row
       .col-md-8.col-sm-12
         %p= @task.description
+        - if @task.attachment
+          = render_task_attachment(@task.attachment)
       .meta-info.col-md-4.col-sm-12
         %ul
           %li
@@ -21,4 +23,5 @@
             %b State:
             %span.label{class: "label-#{@task.state_name}"}= @task.state_name
       .col-md-12
+        = link_to 'Back to tasks', users_root_path, class: 'btn btn-primary'
         = link_to 'Edit', edit_users_task_path(@task), class: 'btn btn-info'

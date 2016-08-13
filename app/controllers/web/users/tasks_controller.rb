@@ -39,6 +39,7 @@ module Web
       def task_params
         tsk_params = [:name, :description, :state]
         tsk_params << :user_id if current_user.admin?
+        tsk_params << { attachment_attributes: [:id, :file, :remove_file, :_destroy] }
         params.fetch(:task).permit(tsk_params)
       end
 

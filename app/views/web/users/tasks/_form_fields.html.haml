@@ -1,6 +1,12 @@
 .col-md-8.col-sm-12
   = f.input :name
   = f.input :description
+  - f.object.build_attachment unless f.object.attachment
+  - if @task.attachment.file.present?
+    = render_task_attachment(@task.attachment)
+  = f.simple_fields_for :attachment do |a|
+    = a.input :file
+    = a.input :_destroy, as: :boolean, label: 'Remove attachment' if a.object.persisted?
 .meta-info.col-md-4.col-sm-12
   %ul
     %li
