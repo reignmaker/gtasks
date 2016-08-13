@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'clearance'
 gem 'responders'
 gem 'state_machines-activerecord'
+gem 'carrierwave'
 group :development, :test do
   gem 'byebug'
 end
