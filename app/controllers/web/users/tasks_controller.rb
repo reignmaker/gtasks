@@ -2,6 +2,7 @@ module Web
   module Users
     class TasksController < ApplicationController
       respond_to :html, :js
+      responders :flash
       before_action :require_login
       before_action :load_task, only: [:show, :edit, :update, :change_state, :destroy]
 
@@ -10,23 +11,13 @@ module Web
       end
 
       def create
-        @task = current_user.tasks.build(task_params)
-        if @task.save
-          flash[:notice] = "Successfuly created Task with ID# #{@task.id}"
-          redirect_to user_tasks_path
-        else
-          flash[:danger] = @task.errors.full_messages.join(', ')
-          render :new
-        end
+        @task = current_user.tasks.create(task_params)
+        respond_with @task, location: -> { users_task_path(@task) }
       end
 
       def update
-        if @task.update(task_params)
-          flash[:notice] = "Successfuly updated Task ##{@task.id}"
-        else
-          flash[:danger] = @task.errors.full_messages.join(', ')
-        end
-        respond_with @task
+        @task.update(task_params)
+        respond_with @task, location: -> { users_task_path(@task) }
       end
 
       def change_state
@@ -35,10 +26,8 @@ module Web
       end
 
       def destroy
-        if @task.destroy
-          flash[:notice] = "Successfuly deleted Task ##{@task.id}"
-        end
-        redirect_to user_tasks_path
+        @task.destroy
+        respond_with @task, location: -> { users_root_path }
       end
 
       protected
@@ -51,6 +40,10 @@ module Web
         tsk_params = [:name, :description, :state]
         tsk_params << :user_id if current_user.admin?
         params.fetch(:task).permit(tsk_params)
+      end
+
+      def interpolation_options
+        { resource_name: @task.name }
       end
 
     end
