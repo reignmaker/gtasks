@@ -11,6 +11,7 @@ gem 'clearance'
 gem 'responders'
 gem 'state_machines-activerecord'
 gem 'carrierwave'
+gem 'mini_magick'
 group :development, :test do
   gem 'byebug'
 end
