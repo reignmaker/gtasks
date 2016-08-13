@@ -5,7 +5,7 @@
   %td= task.description
   - if current_user.admin?
     %td= task.user
-  %td.states{ width: '30%' }
+  %td.states{ width: '20%' }
     %span.label{class: "label-#{task.state_name}"}= task.state_name
     .buttons
       .btn-group
