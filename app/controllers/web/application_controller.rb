@@ -6,7 +6,7 @@ module Web
     protect_from_forgery with: :exception
 
     rescue_from ActiveRecord::RecordNotFound do |e|
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+      render file: "public/404.html", layout: false, status: 404
     end
 
   end
