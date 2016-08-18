@@ -1,9 +1,8 @@
 module Web
   module Users
-    class TasksController < ApplicationController
+    class TasksController < Users::ApplicationController
       respond_to :html, :js
       responders :flash
-      before_action :require_login
       before_action :load_task, only: [:show, :edit, :update, :change_state, :destroy]
 
       def new

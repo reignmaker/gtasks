@@ -1,6 +1,6 @@
 module Web
   module Users
-    class ApplicationController < ::Web::ApplicationController
+    class ApplicationController < Web::ApplicationController
       before_action :require_login
     end
   end
