@@ -25,7 +25,7 @@ gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'pg'
 gem 'simple_form'
-gem 'therubyracer', :platform=>:ruby
+gem 'therubyracer', platform: :ruby
 group :development do
   gem 'better_errors'
   gem 'html2haml'
@@ -49,4 +49,5 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'simplecov', require: false
 end
