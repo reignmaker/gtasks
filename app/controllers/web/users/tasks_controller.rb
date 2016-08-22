@@ -42,7 +42,7 @@ module Web
         params.fetch(:task).permit(tsk_params)
       end
 
-      def interpolation_options
+      def flash_interpolation_options
         { resource_name: @task.name }
       end
 
