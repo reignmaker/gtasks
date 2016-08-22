@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   alias_method :original_tasks, :tasks
 
   def to_s
-    try(:email)
+    email
   end
 
   def tasks
