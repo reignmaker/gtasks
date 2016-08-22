@@ -4,7 +4,7 @@ class Task < ActiveRecord::Base
   validates :name, presence: true
 
   accepts_nested_attributes_for :attachment, allow_destroy: true,
-                                reject_if: proc { |attr| attr[:file].blank? }
+                                reject_if: :reject_attachment
 
   state_machine :state, initial: :new do
 
@@ -32,6 +32,12 @@ class Task < ActiveRecord::Base
 
   def self.states
     [:new, :started, :finished]
+  end
+
+  private
+
+  def reject_attachment(attributes)
+    attributes[:file].blank?
   end
 
 end
