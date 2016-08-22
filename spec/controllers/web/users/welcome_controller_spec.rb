@@ -4,9 +4,6 @@ describe Web::Users::WelcomeController, type: :controller do
 
   describe "GET index" do
     context "when not logged in" do
-      before do
-        sign_out
-      end
       it "redirects to sign_in_path" do
         get :index
         expect(response).to redirect_to(sign_in_path)
