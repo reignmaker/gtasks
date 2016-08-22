@@ -45,6 +45,7 @@ group :production do
   gem 'thin'
 end
 group :test do
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'launchy'
