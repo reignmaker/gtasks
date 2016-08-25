@@ -4,20 +4,21 @@ RSpec.describe Task, type: :model do
   it { should validate_presence_of(:name) }
   it { should have_one(:attachment).dependent(:destroy) }
   it { should accept_nested_attributes_for(:attachment).allow_destroy(true) }
+  it { should belong_to(:user) }
 
   describe 'Task #reject_attachment' do
     let(:task) { FactoryGirl.build(:task) }
 
     context "when attachment has no file" do
       it "rejects attachment" do
-        empty_attachment = FactoryGirl.attributes_for(:attachment, file: '')
+        empty_attachment = FactoryGirl.attributes_for(:file, file: '')
         expect(task.send(:reject_attachment, empty_attachment)).to be_truthy
       end
     end
 
     context "when attachment has file" do
       it "accepts attachment" do
-        attachment = FactoryGirl.attributes_for(:attachment)
+        attachment = FactoryGirl.attributes_for(:file)
         expect(task.send(:reject_attachment, attachment)).to be_falsy
       end
     end
