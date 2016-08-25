@@ -50,4 +50,5 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
+  gem 'coveralls', require: false
 end
