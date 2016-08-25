@@ -9,9 +9,11 @@ module ApplicationHelper
   end
 
   def render_task_attachment(attachment)
-    if attachment.file
-      return image_tag(attachment.file_url) if attachment.file.is_image?
-      return link_to(attachment.file.file.filename, attachment.file_url) unless attachment.file.is_image?
+    return false unless attachment.file.present?
+    if attachment.file.is_image?
+      image_tag(attachment.file_url)
+    else
+      link_to(attachment.file.file.filename, attachment.file_url)
     end
   end
 
