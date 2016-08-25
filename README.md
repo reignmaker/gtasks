@@ -1,4 +1,4 @@
-Gtasks
+Gtasks  [![Build Status](https://travis-ci.org/reignmaker/gtasks.svg?branch=master)](https://travis-ci.org/reignmaker/gtasks)  [![Coverage Status](https://coveralls.io/repos/github/reignmaker/gtasks/badge.svg?branch=master)](https://coveralls.io/github/reignmaker/gtasks?branch=master)
 ================
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
