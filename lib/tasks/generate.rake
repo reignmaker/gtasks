@@ -15,7 +15,7 @@ namespace :generate do
     20.times do
       t = Task.create(name: Faker::Lorem.sentence(1),
                       description: Faker::Lorem.paragraph, user_id: users.sample,
-                      state: Task.states.keys.sample)
+                      state: Task.states.sample)
       p "Created task ##{t.id}-#{t.name}"
     end
   end
